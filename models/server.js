@@ -8,7 +8,8 @@ class Server {
         //variables
         this.PORT = process.env.PORT
         this.pathUsuarios = '/api/usuarios'
-
+        this.pathAuth = '/api/auth';
+        this.pathLibros = '/api/libros';
         //conexion a la base de datos
         this.conectarDB();
 
@@ -33,7 +34,9 @@ class Server {
     }
 
     routes() {
-        this.app.use(this.pathUsuarios, require('../routes/usuarios.router'))
+        this.app.use(this.pathLibros, require('../routes/books.router'));
+        this.app.use(this.pathUsuarios, require('../routes/usuarios.router'));
+        this.app.use(this.pathAuth, require('../routes/auth.router'));
     }
 
     listen() {
