@@ -57,10 +57,7 @@ const borrarUsuario = async (req, res) => {
 }
 
 const obtenerPerfil = async (req, res) => {
-   
-
     const { usuario } = req
-
     res.json({
         usuario
     })
