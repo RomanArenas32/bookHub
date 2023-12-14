@@ -1,10 +1,11 @@
 const { Router } = require('express');
-const { registrarUsuario, actualizarUsuario, obtenerUsuarios, borrarUsuario } = require('../controllers/usuarios.controllers.js');
+const { registrarUsuario, actualizarUsuario, obtenerUsuarios, borrarUsuario, obtenerPerfil } = require('../controllers/usuarios.controllers.js');
 const router = Router();
 const { check } = require('express-validator');
 const validarToken = require('../middlewares/validarToken.js');
 const { existeUsuarioPorId, esRoleValido, emailExiste } = require('../helpers/db-validators.js');
 const { validarCampos } = require('../middlewares/validar-campos.js');
+const checkAuth = require('../middlewares/checkAuth.js');
 
 
 
@@ -34,6 +35,8 @@ router.delete('/:id', [
         check('id').custom(existeUsuarioPorId),
         validarCampos
 ], borrarUsuario);
+
+router.get('/perfil', checkAuth, obtenerPerfil);
 
 module.exports = router;
 
