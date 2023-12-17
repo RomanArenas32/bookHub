@@ -29,7 +29,7 @@ router.put('/:id', [
 
 router.get('/search', obtenerUsuarios);
 
-router.put('/:id', [
+router.delete('/:id', [
         validarToken,
         check('id', 'No es un ID válido').isMongoId(),
         check('id').custom(existeUsuarioPorId),
