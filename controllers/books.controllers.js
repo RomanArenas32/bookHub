@@ -2,14 +2,14 @@ const Book = require('../models/book');
 
 const obtenerLibros = async (req, res) => {
 
-    const { limit = 5, desde = 0 } = req.query;
+    const { limit = 0, desde = 0 } = req.query;
 
     const books = await Book.find()
         .skip(Number(desde))
         .limit(Number(limit));
 
     const total = await Book.countDocuments();
-    console.log(total)
+   
     res.status(200).json({
         total,
         books
